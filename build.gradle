@@ -1,0 +1,67 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.1.RELEASE'
+	}
+	repositories {
+        ivy {
+            url System.properties['artifact.repository.web.uri']
+            layout 'pattern', {
+                artifact "[organisation]/[module]/[type]s/[artifact]-[revision](-[classifier]).[ext]"
+                artifact "[organisation]/[module]/[classifier]/[artifact]-[revision].[ext]"
+                artifact "[organisation]/[module]/[classifier]/[artifact]-[revision](-[classifier]).[ext]"
+                artifact "[organisation]/[module]/[classifier]s/[artifact]-[revision].[ext]"
+                artifact "[organisation]/[module]/[classifier]s/[artifact]-[revision](-[classifier]).[ext]"
+                ivy "[organisation]/[module]/ivys/ivy-[revision].xml"
+            }
+        }
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'tie:gitflow-gradle-plugin:1.+'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'tie.gitflow'
+
+group = 'ch.tie'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+ext {
+	springCloudVersion = 'Finchley.M9'
+}
+
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter-config')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+task copyLogback(type: Copy) {
+    group = 'tie'
+    description = 'Fetch the newest logback config'
+    from file("\\\\build\\ivy-repository\\logback-spring.xml")
+    into file("src/main/resources")
+}
+
+task init {
+    group = 'tie'
+    description = 'Initialize a new TIE Spring Boot Project'
+
+    dependsOn copyLogback
+}
