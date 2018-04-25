@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: template
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: 'http://wlswin.tie.local:9091'
+
+
+management.endpoints.web.exposure.include: refresh
+
+logging:
+  file:
+    max-size: 50MB
+    max-history: 180
