@@ -53,17 +53,3 @@ dependencyManagement {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
-
-task copyLogback(type: Copy) {
-    group = 'tie'
-    description = 'Fetch the newest logback config'
-    from file("\\\\build\\ivy-repository\\logback-spring.xml")
-    into file("src/main/resources")
-}
-
-task setupProject {
-    group = 'tie'
-    description = 'Initialize a new TIE Spring Boot Project'
-
-    dependsOn copyLogback
-}

@@ -1,0 +1,34 @@
+<configuration>
+    <springProperty name="filePath" source="management.endpoint.logfile.external-file"/>
+    <springProperty name="maxFileSize" source="logging.file.max-size"/>
+    <springProperty name="maxHistory" source="logging.file.max-history"/>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${filePath}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${TIEOS}/logs/${name}/%d{yyyy-MM-dd}.%i.${name}.log.zip</fileNamePattern>
+            <maxFileSize>${maxFileSize}</maxFileSize>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %-5level %-50.50logger{50} [%thread] %msg %caller{1}</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="test,prod">
+        <root level="INFO">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+</configuration>
