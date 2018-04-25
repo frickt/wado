@@ -61,7 +61,7 @@ task copyLogback(type: Copy) {
     into file("src/main/resources")
 }
 
-task init {
+task setupProject {
     group = 'tie'
     description = 'Initialize a new TIE Spring Boot Project'
 
