@@ -3,10 +3,6 @@ spring:
     name: template
   profiles:
     active: dev
-  cloud:
-    config:
-      uri: 'http://wlswin.tie.local:9091'
-      enabled: true
 
 tie:
   logging:
