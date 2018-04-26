@@ -3,6 +3,7 @@ buildscript {
         springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
+        mavenCentral()
         ivy {
             url System.properties['artifact.repository.web.uri']
             layout 'pattern', {
@@ -14,7 +15,6 @@ buildscript {
                 ivy "[organisation]/[module]/ivys/ivy-[revision].xml"
             }
         }
-        mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -32,9 +32,26 @@ group = 'ch.tie'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+ext.apiVersion = 'trunk'
+try {
+    ext.apiVersion = apiversion.replace('tags/', '').replace('branches/', '')
+} catch (Exception e) {
+}
+
 repositories {
     mavenCentral()
     maven { url "https://repo.spring.io/milestone" }
+    ivy {
+        url System.properties['artifact.repository.web.uri']
+        layout 'pattern', {
+            artifact "[organisation]/[module]/[type]s/[artifact]-[revision](-[classifier]).[ext]"
+            artifact "[organisation]/[module]/[classifier]/[artifact]-[revision].[ext]"
+            artifact "[organisation]/[module]/[classifier]/[artifact]-[revision](-[classifier]).[ext]"
+            artifact "[organisation]/[module]/[classifier]s/[artifact]-[revision].[ext]"
+            artifact "[organisation]/[module]/[classifier]s/[artifact]-[revision](-[classifier]).[ext]"
+            ivy "[organisation]/[module]/ivys/ivy-[revision].xml"
+        }
+    }
 }
 
 ext {
@@ -42,6 +59,13 @@ ext {
 }
 
 dependencies {
+    compile('tie:api:' + apiVersion)
+
+    compile 'oracle:ojdbc:11.2.0.3';
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+    compile('org.springframework.boot:spring-boot-starter-mail')
+
+
     compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-web')
