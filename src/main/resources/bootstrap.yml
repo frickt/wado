@@ -6,6 +6,7 @@ spring:
   cloud:
     config:
       uri: 'http://wlswin.tie.local:9091'
+      enabled: true
 
 management:
   endpoints.web.exposure.include: refresh,logfile
