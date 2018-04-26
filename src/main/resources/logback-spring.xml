@@ -1,16 +1,19 @@
 <configuration>
-    <springProperty name="filePath" source="management.endpoint.logfile.external-file"/>
-    <springProperty name="maxFileSize" source="logging.file.max-size"/>
-    <springProperty name="maxHistory" source="logging.file.max-history"/>
+    <springProperty name="filename" source="tie.logging.filename"/>
+    <springProperty name="zipname" source="tie.logging.zipname"/>
+    <springProperty name="fileLocation" source="tie.logging.location"/>
+    <springProperty name="maxFileSize" source="tie.logging.max-size"/>
+    <springProperty name="maxHistory" source="tie.logging.max-history"/>
+    <springProperty name="filePattern" source="tie.logging.pattern"/>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${filePath}</file>
+        <file>${fileLocation}/${filename}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${TIEOS}/logs/${name}/%d{yyyy-MM-dd}.%i.${name}.log.zip</fileNamePattern>
+            <fileNamePattern>${fileLocation}/${zipname}</fileNamePattern>
             <maxFileSize>${maxFileSize}</maxFileSize>
             <maxHistory>${maxHistory}</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>${filePattern}</pattern>
         </encoder>
     </appender>
 

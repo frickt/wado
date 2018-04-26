@@ -2,17 +2,21 @@ spring:
   application:
     name: template
   profiles:
-    active: dev
+    active: test
   cloud:
     config:
       uri: 'http://wlswin.tie.local:9091'
       enabled: true
 
-management:
-  endpoints.web.exposure.include: refresh,logfile
-  endpoint.logfile.external-file: '${TIEOS}/logs/${spring.application.name}/${spring.application.name}.log'
-
-logging:
-  file:
+tie:
+  logging:
+    filename: '${spring.application.name}.log'
+    zipname: '%d{yyyy-MM-dd}.%i.${tie.logging.filename}.zip'
+    location: '${TIEOS}/logs/${spring.application.name}'
     max-size: 50MB
     max-history: 180
+    pattern: '%-4relative [%thread] %-5level %logger{35} - %msg%n'
+
+management:
+  endpoints.web.exposure.include: refresh,logfile
+  endpoint.logfile.external-file: '${tie.logging.location}/${tie.logging.filename}'
