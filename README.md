@@ -2,8 +2,8 @@
 A starting point for all future TIE Spring Boot 2 Projects
 
 ## How to use
-1. Checkout and import as new project
-2. run gradle setupProject
+1. Fork and clone
+2. import build.gradle in IDEA -> as new project
 3. enjoy
 
 ## Content
