@@ -1,3 +1,4 @@
+# GLOBAL BLOCK, DO NOT CHANGE #
 spring:
   application:
     name: template
@@ -19,3 +20,7 @@ tie:
 management:
   endpoints.web.exposure.include: '*'
   endpoint.logfile.external-file: '${tie.logging.location}/${tie.logging.filename}'
+# END GLOBAL BLOCK #
+
+# define your own config below, this part will be needed for the config server
+# you can overwrite global values by redefining them

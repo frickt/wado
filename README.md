@@ -9,7 +9,8 @@ Do not store passwords inside src/main/resources or they will be included in pro
 2. import build.gradle in IDEA -> as new project
 3. enjoy
 
-To use your own local configuration make a copy of application.yml in src/test/resources and add param --spring.config.location=<...>/application.yml to your idea run config
+To add a test configuration make a copy of application.yml in src/test/resources and add param --spring.config.location=<...>/application.yml to your idea run config
+For a personal configuration link to a copy outside project
 
 ## Config
 bootstrap.yml contains the minimal options to run and should be equal across all projects
