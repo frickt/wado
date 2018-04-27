@@ -17,8 +17,8 @@ For a personal configuration link to a copy outside the project
 
 
 ## Config
-bootstrap.yml contains the minimal options to run and should be equal across all projects
-application.yml contains app specific options, all custom (self-defined) properties must be commented, *DO NOT STORE PASSWORDS HERE*
+bootstrap.yml contains settings that should be equal across all projects
+application.yml contains app specific options, all custom (self-defined) properties must be commented
 
 ## Production Deployment
 Follow the official deployment guide. Configurations from bootstrap.yml and application.yml will be ignored.
