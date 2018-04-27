@@ -17,3 +17,7 @@ application.yml contains app specific options, all custom (self-defined) propert
 
 ## Production Deployment
 Follow the official deployment guide. Configurations in bootstrap.yml and application.yml will be ignored.
+
+# API Template
+To run with hedev use:
+--spring.config.location=<project>\src\main\resources\bootstrap.yml,<project>\src\test\resources\application-hedev.yml
