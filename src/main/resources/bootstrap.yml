@@ -11,7 +11,7 @@ tie:
     location: '${TIEOS}/logs/${spring.application.name}'
     max-size: 50MB
     max-history: 180
-    pattern: '%-4relative [%thread] %-5level %logger{35} - %msg%n'
+    pattern: '%d %-5level %-50.50logger{50} [%thread] %msg%n'
 
 management:
   endpoints.web.exposure.include: refresh,logfile
