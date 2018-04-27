@@ -2,18 +2,18 @@
 A starting point for all future TIE Spring Boot 2 Projects
 
 ## Important
-* Do not edit bootstrap.yml, make local changes as explained below
+Do not store passwords inside src/main/resources or they will be included in production builds!
 
 ## Get Started
-1. Fork and clone
+1. clone
 2. import build.gradle in IDEA -> as new project
-3. copy application-default.yml to application-dev.yml and make any necessary changes
-4. enjoy
+3. enjoy
 
-## Content
-* Based on spring.io starter
-* Ivy-Repo
-* Spring Cloud, Actuator, Web and Test dependencies
-* logback-spring.xml integration
-* TIE GitFlow plugin
-* api
+To use your own local configuration make a copy of application.yml in src/test/resources and add param --spring.config.location=<...>/application.yml to your idea run config
+
+## Config
+bootstrap.yml contains the minimal options to run and should be equal across all projects
+application.yml contains app specific options, all custom (self-defined) properties must be commented, *DO NOT STORE PASSWORDS HERE*
+
+## Production Deployment
+Follow the official deployment guide. Configurations in bootstrap.yml and application.yml will be ignored.

@@ -26,5 +26,4 @@
 /nbdist/
 /.nb-gradle/
 
-/src/main/resources/bootstrap-dev.yml
-/src/main/resources/application-dev.yml
+/logs

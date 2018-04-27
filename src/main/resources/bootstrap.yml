@@ -3,16 +3,19 @@ spring:
     name: template
   profiles:
     active: dev
+  cloud:
+    config:
+      enabled: false
 
 tie:
   logging:
     filename: '${spring.application.name}.log'
     zipname: '%d{yyyy-MM-dd}.%i.${tie.logging.filename}.zip'
-    location: '${TIEOS}/logs/${spring.application.name}'
+    location: 'logs/${spring.application.name}'
     max-size: 50MB
     max-history: 180
     pattern: '%d %-5level %-50.50logger{50} [%thread] %msg%n'
 
 management:
-  endpoints.web.exposure.include: refresh,logfile
+  endpoints.web.exposure.include: '*'
   endpoint.logfile.external-file: '${tie.logging.location}/${tie.logging.filename}'
