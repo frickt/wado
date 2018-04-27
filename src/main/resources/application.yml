@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@172.16.46.1:1521:TIEDEV1
+    username: HEDEV
+    password: <REPLACE_ME>
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 60000
