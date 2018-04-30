@@ -7,6 +7,9 @@ spring:
   cloud:
     config:
       enabled: false
+#      uri: 'http://wlswin.tie.local:8888'
+#  boot.admin.client.url: 'http://wlswin.tie.local:9092'
+
 
 tie:
   logging:

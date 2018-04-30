@@ -41,6 +41,7 @@ try {
 repositories {
     mavenCentral()
     maven { url "https://repo.spring.io/milestone" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     ivy {
         url System.properties['artifact.repository.web.uri']
         layout 'pattern', {
@@ -67,6 +68,7 @@ dependencies {
 
 
     compile('org.springframework.cloud:spring-cloud-starter-config')
+    compile('de.codecentric:spring-boot-admin-starter-client:2.0.0-SNAPSHOT')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
