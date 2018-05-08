@@ -62,7 +62,7 @@ ext {
 dependencies {
     compile('tie:api:' + apiVersion)
 
-    compile 'oracle:ojdbc:11.2.0.3';
+    compile('oracle:ojdbc:12.2.0.1')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-mail')
 
