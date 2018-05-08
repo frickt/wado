@@ -3,7 +3,6 @@ buildscript {
         springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
-        mavenCentral()
         ivy {
             url System.properties['artifact.repository.web.uri']
             layout 'pattern', {
@@ -15,6 +14,7 @@ buildscript {
                 ivy "[organisation]/[module]/ivys/ivy-[revision].xml"
             }
         }
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -39,7 +39,7 @@ try {
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
     maven { url "https://repo.spring.io/milestone" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     ivy {
@@ -56,7 +56,7 @@ repositories {
 }
 
 ext {
-    springCloudVersion = 'Finchley.M9'
+    springCloudVersion = 'Finchley.RC1'
 }
 
 dependencies {
